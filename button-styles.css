@@ -1,0 +1,142 @@
+/*SUMMARY:
+This exercise was for us to practice CSS properties and selectors by recreating 3 buttons. I selected buttons 5, 14 and 15. 
+*/
+
+button {
+  height: 40px;
+  width: 130px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  /* TODO: find out the name of that property that includes the padding when you change the width and height */
+  /*NVM it messed up the button*/
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0,0,0,.1),
+  4px 4px 5px 0px rgba(0,0,0,.1);
+  /* how does inset work kanti?*/
+  border: none;
+  position: relative;
+  color: white;
+}
+
+/* button 5*/
+/*Reflection: THIS BUTTON TOOK ME 2 HOURS!! And i had loadshedding when i started it so i couldnt even ask for mhelp omg i want to cryyyyyy. But Once I figured out what was the problem with the two lines I was SO happy.*/
+.button-5 {
+  background: rgb(255, 27, 0);
+  background: linear-gradient(0deg, rgba(255,27,0,1) 0%, rgba(251,75,2,1) 100%)
+}
+
+/*I finally understand why it's before AND after!!!*/
+
+.button-5::before {
+  top: 100%; 
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: rgb(255, 27, 0);
+  transition: all 0.2s ease;
+  /*I keep forgetting these 2*/
+  content: "";
+  position: absolute;
+}
+
+.button-5::after {
+  top: 0; 
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: rgb(255, 27, 0);
+  transition: all 0.2s ease;
+  /*I keep forgetting these 2*/
+  content: "";
+  position: absolute;
+}
+
+.button-5:hover::before {
+  width: 100%;
+}
+
+.button-5:hover::after {
+  width: 100%;
+}
+
+
+/*the bottom line isnt showing up and the page isnt turning white!!*/
+/*I GOT IT!!!!!! OMGGGG!!! WOMEN IN STEM!!!*/
+.button-5:hover {
+  background:white;
+  color: rgb(255, 27, 0);
+  box-shadow: none;
+  font-weight: 600;
+}
+
+/*button 14*/
+/*Reflection: This button really wasn't so bad. I did struggle with making the transition because you have to first do the transition and then show what the next layer will look like so that was tricky.*/
+
+/*The button covers*/
+.button-14 {
+  background-color: rgb(255,151,0);
+  /*we gonna stack another background over this one*/
+  z-index: 1;
+  color: white;
+}
+
+.button-14::after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  top: 0;
+  z-index: -1;
+  /*this z-index is gonna bring this new button over button 14*/
+  background-color: rgb(234,248,24);
+  left: 0;
+  /*gradient that will be applied to the new button cover*/
+  background: linear-gradient(315deg, #eaf818 0%, #f6fc9c 74%);
+  box-shadow:2px 2px 2px 0px rgba(255,255,255,.5);
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+
+/*The transition effect*/
+.button-14:hover::after{
+  top: auto;
+  bottom: 0;
+  height: 100%;
+  /*we want the new button cover to slide over the og button from the bottom (where height=0%)*/
+}
+.button-14:hover {
+  color: black;
+  font-weight: 500;
+}
+
+/*button 15*/
+/* Reflection: This was the easier of the buttons to do because I already understood how to think about the main transitions.*/
+
+/*Button covers*/
+.button-15 {
+  background: rgb(182,33,254);
+  color: white;
+  z-index: 1;
+}
+
+.button-15::after {
+  right:0; 
+  width: 0;
+  height: 100%;
+  z-index: -1;
+  background: rgb(102, 61, 255);
+  box-shadow: 2px 2px 2px 0px rgba(255,255,255,.5);
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  top:0;
+  /*Forgot to make an empty string*/
+  position: absolute;
+  content: "";
+}
+
+/*Transition effect*/
+.button-15:hover::after {
+  width: 100%;
+  left: 0;
+}
